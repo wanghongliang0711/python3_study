@@ -13,10 +13,10 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("TAS-262_21C100446_120_0802_parse_sfc_analysis_7.csv")
 
-# print(data.head())
+print(data.head())
 
 # 删除positioning_time和seq_no..列 删除列要加axis=1，默认是删除行的
-data_x = data.drop(['positioning_time','seq_no','ACC OFF','ACC ON','3D+DR','3D','DR','No fix','COG','Brake+Back','Back'], axis=1)
+data_x = data.drop(['positioning_time'], axis=1)
 
 # print(data_x.head())
 
@@ -24,7 +24,7 @@ data_x = data.drop(['positioning_time','seq_no','ACC OFF','ACC ON','3D+DR','3D',
 points = data_x.fillna(0)
 # print(points)
 cols = points.columns  # 返回表头
-# print(cols.tolist())
+print(cols.tolist())
 
 min_max_scaler = preprocessing.MinMaxScaler()
 np_scaled = min_max_scaler.fit_transform(points)  # 归一化 数据变为0~1
@@ -33,10 +33,12 @@ df_normalized = pd.DataFrame(np_scaled, columns = cols)
 
 # print(df_normalized)
 
-# 0000000000000
+# ？？？？？？？？？？？？
 def input_fn():
   return tf.compat.v1.train.limit_epochs(
       tf.convert_to_tensor(df_normalized, dtype=tf.float32), num_epochs=1)
+
+
 print("-----------------")
 # print(input_fn())
 
@@ -54,7 +56,7 @@ print("-----------------")
 
 
 
-time.sleep(80)
+# time.sleep(800)
 
 
 
@@ -67,6 +69,7 @@ kmeans = tf.compat.v1.estimator.experimental.KMeans(
 num_iterations = 30  # 迭代次数
 previous_centers = None
 for _ in range(num_iterations):
+  print("#####################################################################")
   kmeans.train(input_fn)
   cluster_centers = kmeans.cluster_centers()
   if previous_centers is not None:
@@ -78,13 +81,23 @@ print('cluster centers:', cluster_centers)
 # # map the input points to their clusters
 cluster_indices = list(kmeans.predict_cluster_index(input_fn))
 print("cluster_indices:", cluster_indices)
+# time.sleep(90)
 for index, item in enumerate(cluster_indices):
-  cluster_index = cluster_indices[item]
+  # print("item: ", item)
+  cluster_index = cluster_indices[index]
   center = cluster_centers[cluster_index]
-  print('point:', index, 'is in cluster', cluster_index, 'centered at', center)
+  print('point:', index, " item: ", item, ' is in cluster ', cluster_index, ' centered at ', center)
 
 
 
+"""
+当有多列数据时 数据如何在图中呈现？ x轴 和 y轴的值分别是什么 
+
+
+
+相同的数据，有时集群中心不一致，这正常吗？  
+
+"""
 
 
 
