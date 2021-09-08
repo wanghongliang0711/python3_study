@@ -145,3 +145,5 @@ for i in range(10):
 path66 = os.getcwd()+'\\write_test.xlsx'
 wkbk.save(path66)
 
+# 以前从来没有 close 过，以后记得close
+wkbk.close()
