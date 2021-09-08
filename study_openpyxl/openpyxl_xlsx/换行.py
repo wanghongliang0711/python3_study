@@ -12,3 +12,5 @@ ws['A1'] = "Line 1\nLine 2\nLine 3"
 ws['A1'].alignment = Alignment(wrapText=True)
 wb.save("wrap.xlsx")
 
+# 不要忘记 close
+wb.close()
