@@ -1,7 +1,7 @@
 """
 @author: wanghongliang
 @file: study_FTP_02_文件夹下载.py
-@time: 2021/9/17 14:47 
+@time: 2021/9/17 14:47
 """
 import os
 import shutil
