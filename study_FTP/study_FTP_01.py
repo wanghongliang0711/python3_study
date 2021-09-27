@@ -1,7 +1,7 @@
 """
 @author: wanghongliang
 @file: study_FTP_01.py
-@time: 2021/8/2 14:44 
+@time: 2021/8/2 14:44
 """
 # https://www.cnblogs.com/lucky-heng/p/11198338.html
 # https://www.cnblogs.com/rainbow-tan/p/13998528.html  下载文件夹参考这个博客
