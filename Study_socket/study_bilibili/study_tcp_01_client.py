@@ -1,7 +1,7 @@
 """
 @author: wanghongliang
 @file: study_tcp_01_client.py
-@time: 2021/7/13 9:09 
+@time: 2021/7/13 9:09
 """
 import socket
 import time
