@@ -12,7 +12,7 @@ def login_ftp():
     try:
         ftp = FTP()
         ftp.connect("10.87.xxx.xxx", 21)
-        ftp.login("xxx", "xxxxxx")
+        ftp.login("temp", "xxxx")
         return ftp
     except Exception as e:
         print("login_ftp error. message: ", e)
@@ -38,6 +38,7 @@ def upload_dir(ftp, remote_path, local_path):
                 ftp.mkd(i)
                 ftp_remote_path = remote_path + "/" + i
                 upload_dir(ftp, ftp_remote_path, sub_dir)
+                ftp.cwd("..")  # 上传好一个文件夹后要返回上一层，不然上传后的位置就错乱了
             else:
                 upload_file(ftp, i, sub_dir)
     except Exception as e:
@@ -47,7 +48,7 @@ def upload_dir(ftp, remote_path, local_path):
 def main(app_ver, folder_path):
     try:
         ftp = login_ftp()
-        root_path = "/RDrelease/ADAS_Video/xxxxxxxx-Videos/Test Report Log"
+        root_path = "/temp/Blake/ftp_study"
         ftp.cwd(root_path)
         app_list = ftp.nlst()
         if app_ver not in app_list:
@@ -61,4 +62,5 @@ def main(app_ver, folder_path):
     except Exception as e:
         print("Upload_to_FTP error. message: ", e)
 
-# main("1.2.46.12", r"F:\001-blake-Study\python\python-tool\Demo_app_tool\ADAS_Auto_Test\ADAS_Auto_Test_R04\video\case_test01\1.2.46.12_20210930_143331_case_test01")
+main("1.2.46.12", r"E:\temp\test")
+
