@@ -19,10 +19,13 @@ my_font= font_manager.FontProperties(fname=r"C:\Windows\Fonts\simsun.ttc", size=
 # 设置图片大小
 plt.figure(figsize=(15, 8), dpi=80)
 
-# 生成竖向的条形图 width 是条形图的宽度
-plt.bar(range(len(x)),y,width=0.5)
+# 生成横向的条形图 height 是条形图的宽度
+plt.barh(range(len(x)),y,height=0.5)
 
+plt.yticks(range(len(x)), x, fontproperties=my_font,rotation=45)
 
-plt.xticks(range(len(x)), x, fontproperties=my_font,rotation=45)
+# 绘制网格
+plt.grid(alpha=0.5)
+
 
 plt.show()
