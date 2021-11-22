@@ -95,8 +95,50 @@ print(a)
 # b[1] = 100
 # print(b)
 # print(a)
-
+print("***********翻转数组*********************")
 ##  翻转数组
+"""
+numpy.transpose 函数用于对换数组的维度
+"""
+a = np.arange(12).reshape(3,4)
+print('原数组： ')
+print(a)
+print('对换数组： ')
+print(np.transpose(a))
+"""
+原数组： 
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+对换数组： 
+[[ 0  4  8]
+ [ 1  5  9]
+ [ 2  6 10]
+ [ 3  7 11]]
+"""
 
+# numpy.ndarray.T 类似 numpy.transpose：
+a = np.arange(12).reshape(3, 4)
 
+print('原数组：')
+print(a)
+print('\n')
+
+print('转置数组：')
+print(a.T)
+"""
+原数组：
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+转置数组：
+[[ 0  4  8]
+ [ 1  5  9]
+ [ 2  6 10]
+ [ 3  7 11]]
+"""
+
+"""
+numpy.rollaxis 函数向后滚动特定的轴到一个特定位置
+"""
 
