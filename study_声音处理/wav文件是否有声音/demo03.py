@@ -10,7 +10,7 @@ from scipy.io import wavfile
 from matplotlib import pyplot as plt
 
 
-wave_path = r"D:\Study\python\python3_study\python3_study\study_声音处理\录音\test.wav"
+wave_path = r"D:\work\temp\voice_handle\voice_handle_R01\voice\20220323_164711.wav"
 
 
 file = wave.open(wave_path)
@@ -27,9 +27,11 @@ sample_frequency, audio_sequence = wavfile.read(wave_path)
 # print(audio_sequence)  # 声音信号每一帧的“大小”
 x_seq = np.arange(0, time1, sample_time)
 print(x_seq)
-# np.savetxt('out.txt', audio_sequence, delimiter=",", fmt="%.3f,%.3f")
+np.savetxt('out.txt', audio_sequence, delimiter=",", fmt="%.3f,%.3f")
 for i in audio_sequence:
     if i[0] > 500 or i[1] > 500:
+        print(i)
+    if i[0] < -500 or i[1] < -500:
         print(i)
 
 # for index, item in enumerate(audio_sequence):
@@ -40,8 +42,9 @@ for i in audio_sequence:
 
 print(len(x_seq))
 print(len(audio_sequence))
-
-plt.plot(x_seq, audio_sequence, 'blue')
+print(x_seq[0:10])
+print(audio_sequence[0:10])
+plt.plot(x_seq, audio_sequence)
 plt.xlabel("time (s)")
 plt.show()
 
