@@ -10,7 +10,7 @@ from scipy.io import wavfile
 from matplotlib import pyplot as plt
 
 
-wave_path = r"D:\work\temp\voice_handle\voice_handle_R01\voice\20220323_164711.wav"
+wave_path = r"D:\work\temp\voice_handle\voice_handle_R01\voice\20220324_102606.wav"
 
 
 file = wave.open(wave_path)
@@ -28,22 +28,24 @@ sample_frequency, audio_sequence = wavfile.read(wave_path)
 x_seq = np.arange(0, time1, sample_time)
 print(x_seq)
 np.savetxt('out.txt', audio_sequence, delimiter=",", fmt="%.3f,%.3f")
-for i in audio_sequence:
-    if i[0] > 500 or i[1] > 500:
-        print(i)
-    if i[0] < -500 or i[1] < -500:
-        print(i)
+# for i in audio_sequence:
+#     if i[0] > 500 or i[1] > 500:
+#         print(i)
+    # if i[0] < -500 or i[1] < -500:
+    #     print(i)
 
-# for index, item in enumerate(audio_sequence):
-#     print(index, item)
-#     time.sleep(100)
+for index, item in enumerate(audio_sequence):
+    # print(index, item)
+    if abs(item[0]) > 500 or abs(item[1]) > 500:
+        print(index)
+        break
 
 
 
-print(len(x_seq))
-print(len(audio_sequence))
-print(x_seq[0:10])
-print(audio_sequence[0:10])
+# print(len(x_seq))
+# print(len(audio_sequence))
+# print(x_seq[0:10])
+# print(audio_sequence[0:10])
 plt.plot(x_seq, audio_sequence)
 plt.xlabel("time (s)")
 plt.show()
