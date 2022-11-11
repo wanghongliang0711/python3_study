@@ -5,8 +5,8 @@
 """
 import qrcode
 # 调用qrcode的make()方法传入url或者想要展示的内容
-img = qrcode.make("7889234;hjkk")
+img = qrcode.make("华为P8")
 
-img.save("text.png")
+img.save("华为P8.png")
 
 # https://www.jianshu.com/p/c0073c6aa544
