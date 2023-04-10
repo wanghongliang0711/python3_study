@@ -68,6 +68,13 @@ print (x)
 print ('\n')
 print  ('大于 5 的元素是：')
 print (x[x >  5])  # [ 6  7  8  9 10 11]
+# https://blog.csdn.net/zhangwin3/article/details/90575810
+x = np.array([[  3,  8,  7],[  3,  9,  5],[  6,  7,  8],[  9,  10,  11]])
+ss = x[..., -1] > 5
+print(ss)
+print(x[ss])
+print(x[x[:, -1] > 5, 0:2])
+print(x[x[:, -1] > 5, :])
 
 # 使用了 ~（取补运算符）来过滤 NaN。
 a = np.array([np.nan,  1,2,np.nan,3,4,5])
